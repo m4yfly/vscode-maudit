@@ -1,0 +1,162 @@
+[
+    {
+        "type_name": "文件包含漏洞",
+        "regex": "\\b(include|include_once|require|require_once|parsekit_compile_file|php_check_syntax|runkit_import|virtual)(\\s{1,5}|\\s{0,5}\\().{0,60}\\$(?!.*(this->))\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "文件包含函数中存在变量,可能存在文件包含漏洞"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\bpreg_replace\\(\\s{0,5}.*/[is]{0,2}e[is]{0,2}[\"']\\s{0,5},(.*\\$.*,|.*,.*\\$)",
+        "description": "preg_replace的/e模式，且有可控变量，可能存在代码执行漏洞"
+    },
+    {
+        "type_name": "敏感信息泄露漏洞",
+        "regex": "\\bphpinfo\\s{0,5}\\(\\s{0,5}\\)",
+        "description": "phpinfo()函数，可能存在敏感信息泄露漏洞"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\bcall_user_func(_array){0,1}\\(\\s{0,5}\\$\\w{1,15}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "call_user_func函数参数包含变量，可能存在代码执行漏洞"
+    },
+    {
+        "type_name": "任意文件读取漏洞",
+        "regex": "\\b(file_get_contents|fopen|readfile|fgets|fread|parse_ini_file|highlight_file|fgetss|show_source)\\s{0,5}\\(.{0,40}\\$\\w{1,15}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "读取文件函数中存在变量，可能存在任意文件读取漏洞"
+    },
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "\\b(system|passthru|pcntl_exec|shell_exec|escapeshellcmd|exec|proc_open|popen|expect_popen)\\s{0,10}\\(.{0,40}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "命令执行函数中存在变量，可能存在任意命令执行漏洞"
+    },
+    {
+        "type_name": "变量覆盖漏洞",
+        "regex": "\\b(mb_){0,1}parse_str\\s{0,10}\\(.{0,40}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "parse_str函数中存在变量,可能存在变量覆盖漏洞"
+    },
+    {
+        "type_name": "变量覆盖漏洞",
+        "regex": "\\${{0,1}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\s{0,4}=\\s{0,4}.{0,20}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "双$$符号可能存在变量覆盖漏洞"
+    },
+    {
+        "type_name": "SQL注入漏洞",
+        "regex": "[\"'](HTTP_CLIENT_IP|HTTP_X_FORWARDED_FOR|HTTP_REFERER)[\"']",
+        "description": "获取IP地址方式可伪造，HTTP_REFERER可伪造，常见引发SQL注入等漏洞"
+    },
+    {
+        "type_name": "任意文件读取/删除/修改/写入等漏洞",
+        "regex": "\\b(unlink|copy|fwrite|file_put_contents|bzopen)\\s{0,10}\\(.{0,40}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "文件操作函数中存在变量，可能存在任意文件读取/删除/修改/写入等漏洞"
+    },
+    {
+        "type_name": "变量覆盖漏洞",
+        "regex": "\\b(extract)\\s{0,5}\\(.{0,30}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\s{0,5},{0,1}\\s{0,5}(EXTR_OVERWRITE){0,1}\\s{0,5}\\)",
+        "description": "extract函数中存在变量，可能存在变量覆盖漏洞"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\s{0,5}\\(\\s{0,5}\\$_(POST|GET|REQUEST|SERVER)\\[.{1,20}\\]",
+        "description": "可能存在代码执行漏洞,或者此处是后门"
+    },
+    {
+        "type_name": "GPC绕过",
+        "regex": "^(?!.*\\baddslashes).{0,40}\\b((raw){0,1}urldecode|stripslashes)\\s{0,5}\\(.{0,60}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "urldecode绕过GPC,stripslashes会取消GPC转义字符"
+    },
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "`\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}`",
+        "description": "``反引号中包含变量，变量可控会导致命令执行漏洞"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\barray_map\\s{0,4}\\(\\s{0,4}.{0,20}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\s{0,4}.{0,20},",
+        "description": "array_map参数包含变量，变量可控可能会导致代码执行漏洞"
+    },
+    {
+        "type_name": "SQL注入漏洞",
+        "regex": "select\\s{1,4}.{1,60}from.{1,50}\\bwhere\\s{1,3}.{1,50}=[\"\\s\\.]{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "SQL语句select中条件变量无单引号保护，可能存在SQL注入漏洞"
+    },
+    {
+        "type_name": "SQL注入漏洞",
+        "regex": "delete\\s{1,4}from.{1,20}\\bwhere\\s{1,3}.{1,30}=[\"\\s\\.]{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "SQL语句delete中条件变量无单引号保护，可能存在SQL注入漏洞"
+    },
+    {
+        "type_name": "SQL注入漏洞",
+        "regex": "insert\\s{1,5}into\\s{1,5}.{1,60}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "SQL语句insert中插入变量无单引号保护，可能存在SQL注入漏洞"
+    },
+    {
+        "type_name": "SQL注入漏洞",
+        "regex": "update\\s{1,4}.{1,30}\\s{1,3}set\\s{1,5}.{1,60}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "SQL语句update中条件变量无单引号保护，可能存在SQL注入漏洞"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\b(eval|assert)\\s{0,10}\\(.{0,60}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "eval或者assertc函数中存在变量，可能存在代码执行漏洞"
+    },
+    {
+        "type_name": "XSS漏洞",
+        "regex": "\\b(echo|print|print_r|exit|die|printf|vprintf|trigger_error|user_error|odbc_result_all|ovrimos_result_all|ifx_htmltbl_result)\\s{0,5}\\({0,1}.{0,60}\\$_(POST|GET|REQUEST|SERVER)",
+        "description": "echo等输出中存在可控变量，可能存在XSS漏洞"
+    },
+    {
+        "type_name": "任意跳转或http头污染漏洞",
+        "regex": "(\\bheader\\s{0,5}\\(.{0,30}|window.location.href\\s{0,5}=\\s{0,5})\\$_(POST|GET|REQUEST|SERVER)",
+        "description": "header函数或者js location有可控参数，存在任意跳转或http头污染漏洞"
+    },
+    {
+        "type_name": "存在文件上传",
+        "regex": "\\bmove_uploaded_file\\s{0,5}\\(",
+        "description": "存在文件上传，注意上传类型是否可控"
+    },
+    {
+        "type_name": "SSRF漏洞",
+        "regex": "\\bcurl_setopt\\s*?\\(.*,\\s*CURLOPT_URL\\s*,\\s{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}\\)",
+        "description": "curl参数包含变量，可能存在SSRF漏洞"
+    },
+    {
+        "type_name": "SSRF漏洞",
+        "regex": "\\bget_headers\\s*?\\(\\s{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "get_headers参数包含变量，可能存在SSRF漏洞"
+    },
+    {
+        "type_name": "SSRF漏洞",
+        "regex": "\\bfsockopen\\s*?\\(\\s{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "fsockopen参数包含变量，可能存在SSRF漏洞"
+    },
+    {
+        "type_name": "LDAP注入漏洞",
+        "regex": "\\bldap_search\\s*?\\(.*?,.*?,\\s{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "ldap_search参数包含变量，可能存在LDAP注入漏洞"
+    },
+    {
+        "type_name": "XXE漏洞",
+        "regex": "\\b(simplexml_load_file|simplexml_load_string)\\s*?\\(\\s{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "simplexml_load_string等函数参数包含变量，可能存在XXE漏洞"
+    },
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "\\bssh2_exec\\s*?\\(.*?,[\"']\\s{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}[\"']",
+        "description": "命令执行函数中存在变量，可能存在任意命令执行漏洞"
+    },
+    {
+        "type_name": "不安全的随机数",
+        "regex": "\\buniqid\\s?\\(",
+        "description": "uniqid基于时间戳生成的，属于伪随机生成器，不建议使用"
+    },
+    {
+        "type_name": "反序列化漏洞",
+        "regex": "\\bunserialize\\s*?\\(\\s{0,10}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
+        "description": "unserialize参数包含变量，可能存反序列化漏洞"
+    },
+    {
+        "type_name": "变量覆盖漏洞",
+        "regex": "\\bimport_request_variables\\s*?\\(",
+        "description": "调用了import_request_variables,可能存在变量覆盖漏洞"
+    }
+]

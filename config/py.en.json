@@ -1,0 +1,22 @@
+[
+    {
+        "type_name": "Command execution",
+        "regex": "\\b(os\\.system|os\\.popen|commands\\.getoutput|commands\\.getstatusoutput|subprocess\\.call|subprocess\\.Popen|subprocess\\.check_call|subprocess\\.check_output|utils\\.execute|utils\\.execute_with_timeout)\\(",
+        "description": "A function that executes a command is called, a command execution vulnerability may exist"
+    },
+    {
+        "type_name": "File deletion",
+        "regex": "\\b(os\\.remove|os\\.unlink|os\\.rmdir|os\\.removedirs|shutil\\.rmtree)\\(",
+        "description": "A function to delete a file was called, a file deletion vulnerability may exist"
+    },
+    {
+        "type_name": "Deserialization",
+        "regex": "\\b(pickle|cPickle|yaml)\\.(load|dump|loads|dumps)\\(",
+        "description": "There are serialization operations, and there may be a deserialization vulnerability"
+    },
+    {
+        "type_name": "Code execution",
+        "regex": "\\b(eval|eval_r|exec|execfile)\\(",
+        "description": "A function that executes code is called, a code execution vulnerability may exist"
+    }
+]

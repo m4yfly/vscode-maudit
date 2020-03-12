@@ -1,0 +1,42 @@
+[
+    {
+        "type_name": "XSS漏洞",
+        "regex": "\\bout\\.println\\s*\\(\\s*request\\.get(Parameter|QueryString)\\s*\\(\\s*\"",
+        "description": "直接输出了参数可能导致XSS漏洞"
+    },
+    {
+        "type_name": "SQL注入漏洞",
+        "regex": "\\b(?:select|update)\\s+.*(?:from|set).*where\\s+\\w+\\s*=[^\"']*(?:\"|').*(?:\\+|\\%s)",
+        "description": "SQL语句存在拼接，可能存在SQL注入漏洞"
+    },
+    {
+        "type_name": "不安全的随机数",
+        "regex": "\\bnew Random\\s*\\(|Random\\.next",
+        "description": " 使用可预测的随机数可能会导致漏洞"
+    },
+    {
+        "type_name": "不安全的随机数",
+        "regex": "\\bnew Random\\s*\\(|Random\\.next",
+        "description": " 使用可预测的随机数可能会导致漏洞"
+    },
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "\\b((ProcessBuilder(\\(|\\.))|(Runtime\\.getRuntime\\(\\)))",
+        "description": "调用了执行命令的函数，可能存在命令执行漏洞"
+    },
+    {
+        "type_name": "存在文件上传",
+        "regex": "\\bgetOriginalFilename\\(",
+        "description": "存在文件上传，注意上传类型是否可控"
+    },
+    {
+        "type_name": "反序列化漏洞",
+        "regex": "\\b(readObject|JSON\\.parseObject|ObjectMapper\\.readValue|fromXML|readUnshared)\\(",
+        "description": "存在反序列化操作，可能存在反序列化漏洞"
+    },
+    {
+        "type_name": "XXE漏洞",
+        "regex": "\\b(new\\s+SAXReader|new\\s+SAXBuilder|new\\s+SAXParser|createXMLReader|newDocumentBuilder|createXMLStreamReader)\\(",
+        "description": "调用了XML相关函数，可能存在XXE漏洞"
+    }
+]

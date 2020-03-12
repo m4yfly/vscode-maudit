@@ -1,0 +1,37 @@
+[
+    {
+        "type_name": "XSS",
+        "regex": "\\bout\\.println\\s*\\(\\s*request\\.get(Parameter|QueryString)\\s*\\(\\s*\"",
+        "description": "Direct output of parameters may lead to XSS vulnerabilities"
+    },
+    {
+        "type_name": "SQL injection",
+        "regex": "\\b(?:select|update)\\s+.*(?:from|set).*where\\s+\\w+\\s*=[^\"']*(?:\"|').*(?:\\+|\\%s)",
+        "description": "SQL statements are spliced, SQL injection vulnerabilities may exist"
+    },
+    {
+        "type_name": "Unsafe random number",
+        "regex": "\\bnew Random\\s*\\(|Random\\.next",
+        "description": "Using predictable random numbers may lead to vulnerabilities"
+    },
+    {
+        "type_name": "Command execution",
+        "regex": "\\b((ProcessBuilder(\\(|\\.))|(Runtime\\.getRuntime\\(\\)))",
+        "description": "A function that executes a command is called, a command execution vulnerability may exist"
+    },
+    {
+        "type_name": "File upload exists",
+        "regex": "\\bgetOriginalFilename\\(",
+        "description": "File upload exists, pay attention to whether the upload type is controllable"
+    },
+    {
+        "type_name": "Deserialization",
+        "regex": "\\b(readObject|JSON\\.parseObject|ObjectMapper\\.readValue|fromXML|readUnshared)\\(",
+        "description": "There is deserialization operation, there may be deserialization vulnerability"
+    },
+    {
+        "type_name": "XXE",
+        "regex": "\\b(new\\s+SAXReader|new\\s+SAXBuilder|new\\s+SAXParser|createXMLReader|newDocumentBuilder|createXMLStreamReader)\\(",
+        "description": "Called XML related functions, XXE vulnerability may exist"
+    }
+]

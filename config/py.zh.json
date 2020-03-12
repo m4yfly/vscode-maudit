@@ -1,0 +1,22 @@
+[
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "\\b(os\\.system|os\\.popen|commands\\.getoutput|commands\\.getstatusoutput|subprocess\\.call|subprocess\\.Popen|subprocess\\.check_call|subprocess\\.check_output|utils\\.execute|utils\\.execute_with_timeout)\\(",
+        "description": "调用了执行命令的函数，可能存在命令执行漏洞"
+    },
+    {
+        "type_name": "文件删除漏洞",
+        "regex": "\\b(os\\.remove|os\\.unlink|os\\.rmdir|os\\.removedirs|shutil\\.rmtree)\\(",
+        "description": "调用了删除文件的函数，可能存在文件删除漏洞"
+    },
+    {
+        "type_name": "反序列化漏洞",
+        "regex": "\\b(pickle|cPickle|yaml)\\.(load|dump|loads|dumps)\\(",
+        "description": "存在序列化操作，可能存在反序列化漏洞"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\b(eval|eval_r|exec|execfile)\\(",
+        "description": "调用了执行命令的函数，可能存在命令执行漏洞"
+    },
+]
