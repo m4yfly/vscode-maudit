@@ -3,7 +3,7 @@
   "displayName": "maudit",
   "description": "Simple source code security audit helper",
   "publisher": "m4yfly",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
