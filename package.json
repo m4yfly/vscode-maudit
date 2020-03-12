@@ -4,6 +4,14 @@
   "description": "Simple source code security audit helper",
   "publisher": "m4yfly",
   "version": "0.0.1",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m4yfly/vscode-maudit.git"
+  },
+  "bugs": {
+      "url": "https://github.com/m4yfly/vscode-maudit/issues"
+  },
   "engines": {
     "vscode": "^1.42.0"
   },
