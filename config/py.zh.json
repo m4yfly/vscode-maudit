@@ -18,5 +18,5 @@
         "type_name": "代码执行漏洞",
         "regex": "\\b(eval|eval_r|exec|execfile)\\(",
         "description": "调用了执行命令的函数，可能存在命令执行漏洞"
-    },
+    }
 ]

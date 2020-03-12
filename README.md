@@ -6,7 +6,7 @@
 
 ## Usages
 
-![image-20200312214824131](imgs\demo.png)
+![image-20200312214824131](https://github.com/m4yfly/vscode-maudit/blob/master/imgs/demo.png?raw=true)
 
 ## Features
 
@@ -26,7 +26,8 @@ Install `maduit` from the Visual Studio Marketplace within the Extensions tab of
 git clone https://github.com/m4yfly/vscode-maudit.git
 cd vscode-maudit
 npm i
-gulp package
+npm install -g vsce
+vsce package
 ````
 
 `maudit-x.x.x.vsix` will be created.

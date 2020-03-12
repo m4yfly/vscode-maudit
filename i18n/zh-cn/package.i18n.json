@@ -1,6 +1,0 @@
-{
-	"maudit.analyze.title": "Maudit: 开始分析",
-	"maudit.clear.title": "Maudit: 清空结果",
-	"rule.language": "zh",
-	"explorerTree.resultdesc": "$0 : 行 $1, 列 $2"
-}

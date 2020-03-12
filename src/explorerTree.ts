@@ -3,9 +3,6 @@ import * as maudit from "./maudit";
 import * as path from "path";
 import * as mauditResults from "./mauditResults";
 import * as extension from "./extension";
-import * as nls from 'vscode-nls';
-
-const localize = nls.loadMessageBundle();
 
 // Generic tree node implementation.
 export class ExplorerNode extends vscode.TreeItem {
@@ -30,7 +27,7 @@ export class CheckResultNode extends ExplorerNode {
     public checkNodeParent : ExplorerNode | undefined;
     constructor(workspaceFolder : string, workspaceResult : mauditResults.MaduitResult) {
         let thisFileName = path.basename(workspaceResult.matchFilePath);
-        let message = localize('explorerTree.resultdesc', '$0 : line $1, column $2');
+        let message = '$0 : line $1, column $2';
         message = message.replace('$0', thisFileName);
         message = message.replace('$1', workspaceResult.matchLineNum.toString());
         message = message.replace('$2', workspaceResult.startingColumn.toString());

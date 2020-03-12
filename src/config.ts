@@ -1,11 +1,12 @@
-import * as nls from 'vscode-nls';
+import * as vscode from 'vscode';
 import * as tools from './tools';
 import {Logger} from './logger';
 
-// The example uses the file message format.
-const localize = nls.config({ messageFormat: nls.MessageFormat.file })();
+let langMessage = 'en';
 
-const langMessage = localize('rule.language', 'en');
+if (vscode.env.language === 'zh-cn') {
+    langMessage = 'zh';
+}
 
 export interface RawComRegRule {
     type_name : string;
@@ -40,20 +41,5 @@ export function getRegexRules(langname: string) {
 
 export async function getSupportLang() {
     let names: string[] = ['php','java','py'];
-    //Fix me, load exts from filesystem.
-    // let {fileMap, err} = await tools.getFileList('../config/', ['.json']);
-
-    // if (!err) {
-    //     let files = fileMap.get('.json');
-    //     Logger.log(String(files));
-    //     if (files) {
-    //         for (let filename of files) {
-    //             let prefix = filename.split('.')[0];
-    //             names.push(prefix);
-    //         }
-    //     }
-    // } else {
-    //     Logger.error(err);
-    // }
     return names;
 }

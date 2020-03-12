@@ -20,7 +20,8 @@
   git clone https://github.com/m4yfly/vscode-maudit.git
   cd vscode-maudit
   npm i
-  gulp package
+  npm install -g vsce
+  vsce package
   ```
 
   从VScode扩展页面的`...`菜单处，选择VSIX文件安装
