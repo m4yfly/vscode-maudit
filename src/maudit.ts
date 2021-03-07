@@ -77,7 +77,7 @@ export async function analyze() : Promise<boolean> {
             }
         }
     }
-
+    Logger.show();
     // We completed analysis without error.
     return true;
 }

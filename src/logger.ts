@@ -4,7 +4,8 @@ export class Logger {
     private static outputChannel : vscode.OutputChannel = vscode.window.createOutputChannel("Maudit");
 
     public static initialize() : void {
-        this.show();
+        // this is annoying
+        // this.show();
     }
 
     public static show() : void {

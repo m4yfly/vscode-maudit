@@ -29,7 +29,7 @@ export class CheckResultNode extends ExplorerNode {
         let thisFileName = path.basename(workspaceResult.matchFilePath);
         let message = '$0 : line $1, column $2';
         message = message.replace('$0', thisFileName);
-        message = message.replace('$1', workspaceResult.matchLineNum.toString());
+        message = message.replace('$1', (workspaceResult.matchLineNum + 1).toString());
         message = message.replace('$2', workspaceResult.startingColumn.toString());
         super(`${message}`, vscode.TreeItemCollapsibleState.None);
         this.result = workspaceResult;
@@ -93,7 +93,7 @@ export class AHelperExplorer implements vscode.TreeDataProvider<ExplorerNode> {
         this.refreshIconsForCheckResults();
 
         // Fire the event to refresh our tree
-        this.changeTreeEmitter.fire();
+        this.changeTreeEmitter.fire(null);
 
         // Fire the event to refresh our diagnostics
         await extension.diagnosticsProvider.refreshDiagnostics();

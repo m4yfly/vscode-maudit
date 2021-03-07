@@ -97,7 +97,7 @@
     {
         "type_name": "代码执行漏洞",
         "regex": "\\b(eval|assert)\\s{0,10}\\(.{0,60}\\$\\w{1,20}((\\[[\"']|\\[)\\${0,1}[\\w\\[\\]\"']{0,30}){0,1}",
-        "description": "eval或者assertc函数中存在变量，可能存在代码执行漏洞"
+        "description": "eval或者assert函数中存在变量，可能存在代码执行漏洞"
     },
     {
         "type_name": "XSS漏洞",

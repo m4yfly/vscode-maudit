@@ -68,7 +68,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			// Update source mapping status, and refresh trees + diagnostics
 			await maudit.updateSourceMappingSyncStatus(false, e.fileName);
 			await ahelperExplorerTreeProvider.refreshIconsForCheckResults();
-			await ahelperExplorerTreeProvider.changeTreeEmitter.fire();
+			await ahelperExplorerTreeProvider.changeTreeEmitter.fire(null);
 			await diagnosticsProvider.refreshDiagnostics();
 		});
 
