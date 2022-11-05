@@ -18,5 +18,25 @@
         "type_name": "代码执行漏洞",
         "regex": "\\b(eval|eval_r|exec|execfile)\\(",
         "description": "调用了执行命令的函数，可能存在命令执行漏洞"
+    },
+    {
+        "type_name": "逻辑问题",
+        "regex": "\\b(path\\.join)\\(",
+        "description": "可能导致路径覆盖"
+    },
+    {
+        "type_name": "文件操作",
+        "regex": "\\b(\\.read|\\.write|files\\.get|\\.parse)\\(",
+        "description": "可能导致任意文件读写"
+    },
+    {
+        "type_name": "SSRF",
+        "regex": "\\b(\\.setopt|\\.urlopen)\\(",
+        "description": "可能导致SSRF"
+    },
+    {
+        "type_name": "SQL查询操作",
+        "regex": "\\b(select|update|insert|delete)\\s+",
+        "description": "可能导致SQL注入"
     }
 ]

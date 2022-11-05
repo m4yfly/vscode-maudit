@@ -20,7 +20,7 @@ export class CommonRegRule {
     description: string;
     constructor (rawRule : RawComRegRule) {
         this.type_name = rawRule.type_name;
-        this.regex = RegExp(rawRule.regex, 'g');
+        this.regex = RegExp(rawRule.regex, 'ig');  // ignore case
         this.description = rawRule.description;
     }
 }
@@ -40,6 +40,10 @@ export function getRegexRules(langname: string) {
 }
 
 export async function getSupportLang() {
-    let names: string[] = ['php','java','py'];
+    let names:Map<string, string[]> = new Map<string, string[]>();
+    names.set('php',['php','php3','php4','php5','php7','pht','phtml']);
+    names.set('java',['java']);
+    names.set('python',['py']);
+    names.set('perl',['pl','pm']);
     return names;
 }

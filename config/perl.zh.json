@@ -1,0 +1,37 @@
+[
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "\\b(system|exec|readpipe|open)\\s*?\\(.{0,100}(\\$|@)",
+        "description": "命令执行函数中存在变量，可能存在任意命令执行漏洞"
+    },
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "\\b(system|exec|readpipe|open)\\s*?.{0,100}(\\$|@)",
+        "description": "命令执行函数中存在变量，可能存在任意命令执行漏洞"
+    },
+    {
+        "type_name": "命令执行漏洞",
+        "regex": "`.*?(\\$|@)\\w{1,30}.*`",
+        "description": "命令执行函数中存在变量，可能存在任意命令执行漏洞"
+    },
+    {
+        "type_name": "SQL查询操作",
+        "regex": "\\b(select|update|insert|delete)\\s+.*?(\\$|@)\\w{1,30}",
+        "description": "可能导致SQL注入"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\b(eval)\\s*?\\(.{0,100}(\\$|@)",
+        "description": "代码执行函数中存在变量，可能存在代码执行漏洞"
+    },
+    {
+        "type_name": "代码执行漏洞",
+        "regex": "\\b(eval)\\s*?.{0,100}(\\$|@)",
+        "description": "代码执行函数中存在变量，可能存在代码执行漏洞"
+    },
+    {
+        "type_name": "正则匹配表达式",
+        "regex": "\\s*?=~.*?/.{0,3}e",
+        "description": "正则匹配表达式执行表达式"
+    }
+]

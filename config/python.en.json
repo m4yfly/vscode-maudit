@@ -18,5 +18,25 @@
         "type_name": "Code execution",
         "regex": "\\b(eval|eval_r|exec|execfile)\\(",
         "description": "A function that executes code is called, a code execution vulnerability may exist"
+    },
+    {
+        "type_name": "Logical problem",
+        "regex": "\\b(path\\.join)\\(",
+        "description": "may cause path rewrite"
+    },
+    {
+        "type_name": "File operations",
+        "regex": "\\b(\\.read|\\.write|files\\.get|\\.parse)\\(",
+        "description": "Can lead to arbitrary file reads and writes"
+    },
+    {
+        "type_name": "SSRF",
+        "regex": "\\b(\\.setopt|\\.urlopen)\\(",
+        "description": "May cause SSRF"
+    },
+    {
+        "type_name": "SQL query operation",
+        "regex": "\\b(select|update|insert|delete)\\s+",
+        "description": "Can lead to SQL injection"
     }
 ]

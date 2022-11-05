@@ -17,7 +17,7 @@ export async function initialize() : Promise<boolean> {
     initialized = false;
 
     let langnames = await config.getSupportLang();
-    for (let lang of langnames) {
+    for (let lang of langnames.keys()) {
         regexMap.set(lang, config.getRegexRules(lang));
     }
 
@@ -131,10 +131,16 @@ async function regexMatch(lines : string[], filepath: string, langname:string='p
 async function doAnalyze(wsFloder : string) : Promise<boolean> {
 
     let extList :string[] = [];
-    let extListWithDot :string[] = [];
-    for (let [key, val] of regexMap) {
+    let extListWithDot :Map<string,string>[] = [];
+    let supportLangs = await config.getSupportLang();
+    for (let [key, val] of supportLangs) {
         extList.push(key);
-        extListWithDot.push('.' + key);
+        for (let item of val) {
+            extListWithDot.push(new Map([
+                ['lang',key],
+                ['extWithDot','.' + item]
+            ]));
+        }
     }
 
     let {fileMap, err} = await tools.getFileList(wsFloder, extListWithDot);
@@ -142,7 +148,7 @@ async function doAnalyze(wsFloder : string) : Promise<boolean> {
         Logger.error(`Get filesList from ${wsFloder} failed.`);
     } else {
         for (let ext of extList) {
-            let thisList = fileMap.get('.' + ext);
+            let thisList = fileMap.get(ext);
             if (thisList) {
                 for (let filepath of thisList) {
                     let lines = await tools.readFileLines(filepath);

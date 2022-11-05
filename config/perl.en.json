@@ -1,0 +1,37 @@
+[
+    {
+        "type_name": "Command execution",
+        "regex": "\\b(system|exec|readpipe|open)\\s*?\\(.{0,100}(\\$|@)",
+        "description": "There are variables in the command execution function, there may be arbitrary command execution vulnerabilities"
+    },
+    {
+        "type_name": "Command execution",
+        "regex": "\\b(system|exec|readpipe|open)\\s*?.{0,100}(\\$|@)",
+        "description": "There are variables in the command execution function, there may be arbitrary command execution vulnerabilities"
+    },
+    {
+        "type_name": "Command execution",
+        "regex": "`.*?(\\$|@)\\w{1,30}.*`",
+        "description": "There are variables in the command execution function, there may be arbitrary command execution vulnerabilities"
+    },
+    {
+        "type_name": "SQL query operation",
+        "regex": "\\b(select|update|insert|delete)\\s+.*?(\\$|@)\\w{1,30}",
+        "description": "Can lead to SQL injection"
+    },
+    {
+        "type_name": "Code execution",
+        "regex": "\\b(eval)\\s*?\\(.{0,100}(\\$|@)",
+        "description": "function parameter contains variables, code execution vulnerability may exist"
+    },
+    {
+        "type_name": "Code execution",
+        "regex": "\\b(eval)\\s*?.{0,100}(\\$|@)",
+        "description": "function parameter contains variables, code execution vulnerability may exist"
+    },
+    {
+        "type_name": "Regular match expression",
+        "regex": "\\s*?=~.*?/.{0,3}e",
+        "description": "Regular match expression execute expression"
+    }
+]

@@ -6,13 +6,8 @@
     },
     {
         "type_name": "SQL注入漏洞",
-        "regex": "\\b(?:select|update)\\s+.*(?:from|set).*where\\s+\\w+\\s*=[^\"']*(?:\"|').*(?:\\+|\\%s)",
+        "regex": "\\b(?:select|update|delete)\\s+.*(?:from|set).*where\\s+\\w+\\s*=[^\"']*(?:\"|').*(?:\\+|\\%s)",
         "description": "SQL语句存在拼接，可能存在SQL注入漏洞"
-    },
-    {
-        "type_name": "不安全的随机数",
-        "regex": "\\bnew Random\\s*\\(|Random\\.next",
-        "description": " 使用可预测的随机数可能会导致漏洞"
     },
     {
         "type_name": "不安全的随机数",
@@ -38,5 +33,30 @@
         "type_name": "XXE漏洞",
         "regex": "\\b(new\\s+SAXReader|new\\s+SAXBuilder|new\\s+SAXParser|createXMLReader|newDocumentBuilder|createXMLStreamReader)\\(",
         "description": "调用了XML相关函数，可能存在XXE漏洞"
+    },
+    {
+        "type_name": "SSRF漏洞",
+        "regex": "\\b(getInputStream|executeMethod|execute|connect|HttpClient)\\(",
+        "description": "可能存在SSRF漏洞"
+    },
+    {
+        "type_name": "存在文件上传",
+        "regex": "\\bMultipartFile\\(",
+        "description": "存在文件上传，注意上传类型是否可控"
+    },
+    {
+        "type_name": "SQL注入漏洞",
+        "regex": "insert\\s{1,5}into\\s{1,5}.{1,100}\\+",
+        "description": "SQL语句insert中可能存在SQL注入漏洞"
+    },
+    {
+        "type_name": "Autobinding",
+        "regex": "\\b(@SessionAttributes|@ModelAttribute)",
+        "description": "可能存在Autobinding漏洞"
+    },
+    {
+        "type_name": "认证绕过漏洞",
+        "regex": "\\.(getRequestURI|forward)\\(",
+        "description": "内容可控，可能可用于认证绕过"
     }
 ]

@@ -6,7 +6,7 @@
     },
     {
         "type_name": "SQL injection",
-        "regex": "\\b(?:select|update)\\s+.*(?:from|set).*where\\s+\\w+\\s*=[^\"']*(?:\"|').*(?:\\+|\\%s)",
+        "regex": "\\b(?:select|update|delete)\\s+.*(?:from|set).*where\\s+\\w+\\s*=[^\"']*(?:\"|').*(?:\\+|\\%s)",
         "description": "SQL statements are spliced, SQL injection vulnerabilities may exist"
     },
     {
@@ -33,5 +33,30 @@
         "type_name": "XXE",
         "regex": "\\b(new\\s+SAXReader|new\\s+SAXBuilder|new\\s+SAXParser|createXMLReader|newDocumentBuilder|createXMLStreamReader)\\(",
         "description": "Called XML related functions, XXE vulnerability may exist"
+    },
+    {
+        "type_name": "SSRF",
+        "regex": "\\b(getInputStream|executeMethod|execute|connect|HttpClient)\\(",
+        "description": "SSRF vulnerability may exist"
+    },
+    {
+        "type_name": "File upload exists",
+        "regex": "\\bMultipartFile\\(",
+        "description": "File upload exists, pay attention to whether the upload type is controllable"
+    },
+    {
+        "type_name": "SQL injection",
+        "regex": "insert\\s{1,5}into\\s{1,5}.{1,100}\\+",
+        "description": "SQL injection vulnerabilities may exist"
+    },
+    {
+        "type_name": "Autobinding",
+        "regex": "\\b(@SessionAttributes|@ModelAttribute)",
+        "description": "Autobinding vulnerabilities may exist"
+    },
+    {
+        "type_name": "Auth Bypass",
+        "regex": "\\.(getRequestURI|forward)\\(",
+        "description": "Auth Bypass vulnerabilities may exist"
     }
 ]
