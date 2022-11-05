@@ -56,7 +56,7 @@ export async function gotoResultCode(workspaceFolder : string, result : MaduitRe
         });
     } catch (r) {
         // Log our error.
-        Logger.error(r.message);
+        Logger.error("Go to result code failed.");
         
     }
 }
